@@ -1,0 +1,46 @@
+<div class="">
+  <div class="container mb-6">
+    <h2 class="text-center mb-3">Add a new song</h2>
+        <form  method="POST" name="addSong" [formGroup]="addSong" (submit)="addSongs()">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Song Name" aria-label="songname" formControlName="songname">
+          </div>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Artiste" aria-label="artist" formControlName="artiste">
+          </div>
+          <div class="input-group mb-3">
+            <select class="custom-select" formControlName="playlist">
+                <option selected>Choose Playlist...</option>
+              <option value="1">Most Played</option>
+              <option value="2">Recently added</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary text-center">Add</button>
+        </form>
+  </div>
+  <div class="container mt-5">
+    <h3 class="text-center mb-3">Here are the song listings:</h3>
+    <div class="row">
+      <div class="col-sm-4" *ngFor="let songs of songData">
+        <div class="music_card text-center">
+          <div class="image">
+              <img src="https://i.ya-webdesign.com/images/music-icon-png-6.png" alt="music-icon" class="img-fluid">
+          </div>
+          <div class="music_name mb-3 ">
+              {{songs.name}}
+          </div>
+          <div class="artist_name mb-2">
+              {{songs.artist}}
+          </div>
+          <div class="playlist_name mb-2">
+            {{songs.playlist.title}}
+          </div>
+          <div class="delete_button">
+              <button type="button" class="btn btn-danger" (click)="deleteSong(songs.id)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>
